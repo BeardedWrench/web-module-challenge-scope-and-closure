@@ -27,12 +27,12 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   
   Study the code for counter1 and counter2, then answer the questions below.
   
-  1. What is the difference between counter1 and counter2?
+  1. What is the difference between counter1 and counter2? - counter 1 is using closure properly, assigning it to a variable allows for access to the internal returned function. counter 2 is a basic function, referencing a global variable outside of the function scope. 
   
-  2. Which of the two uses a closure? How can you tell?
+  2. Which of the two uses a closure? How can you tell? - counter 1 uses closure, referencing counterMaker and could reference it's internal function,and i can tell this because it's assigned counterMaker to a variable.
   
   3. In what scenario would the counter1 code be preferable? In what scenario would 
-     counter2 be better?  
+     counter2 be better?  - counter1 would be preferable in a situation where you want to keep "count" and add to it, counter 2 is preferable when you're just wanting increment count globally each time the function is called.
 */
 
 // counter1 code
@@ -62,8 +62,8 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+  return Math.floor( Math.random() * Math.floor( 3 ) );
 }
 
 
@@ -81,8 +81,13 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*code Here*/){
-  /*Code Here*/
+function finalScore( func, innPlayed ){
+  let final = { Home:0, Away: 0 };
+  for( let i=0; i < innPlayed; i++ ){
+    final.Home += func();
+    final.Away += func();
+  }
+  return final
 }
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
@@ -90,8 +95,8 @@ Use the getInningScore() function below to do the following:
   1. Receive a callback function - you will pass in the inning function from task 2 as your argument 
   2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore( func ) {
+  return { Home:func(), Away:func() };
 }
 
 
@@ -136,8 +141,22 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+ function scoreboard( func, func2, playInn ) {
+  let newArr = [];
+  let score = { Home:0 , Away:0 };
+  for( let i = 0; i < playInn; i++){
+    let inning = func(func2)
+    score = { Home: score.Home += inning.Home, Away: score.Away += inning.Away };
+    newArr.push( `Inning ${i + 1}: Away ${score.Away} - Home ${score.Home}` );
+    if( i + 1 === playInn ){
+      if(inning.Away === inning.Home) {
+        newArr.push(`This game will require extra innings: Away ${score.Away } - Home ${score.Away}`);
+      } else {
+        newArr.push(`Final Score: Away ${score.Away} - Home ${score.Home}`);
+      }
+    }
+  }
+  return newArr
 }
 
 

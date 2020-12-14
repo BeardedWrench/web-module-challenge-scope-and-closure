@@ -42,7 +42,7 @@ Find the file `index.js` and complete the tasks.
 
 Edit the `ReadMe` file with your answers.
 
-1. In your own words, define closure (1-2 sentences).
+1. In your own words, define closure (1-2 sentences). - Closure gives you access to an outer function scope from an inner function
 2. Study the following code, then answer the questions below.
 
 ```js
@@ -63,9 +63,9 @@ dansRoll();
 dansRoll();
 ```
 
-a. Where is closure used in this code? How can you tell?
-b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
-c. What is the lexical scope of `newRoll`? 
+a. Where is closure used in this code? How can you tell? - inside of the anonymous function, returning or console logging data you received from outside your function.
+b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change? - the name "dan" stays the same but the number he rolled changes.
+c. What is the lexical scope of `newRoll`? - it's inside the anonymous function and only accessible by the anonymous function. 
 
 
 ### Task 3 - Stretch Goals
