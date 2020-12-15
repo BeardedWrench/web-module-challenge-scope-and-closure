@@ -87,7 +87,7 @@ function finalScore( func, innPlayed ){
     final.Home += func();
     final.Away += func();
   }
-  return final
+  return final;
 }
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
@@ -143,17 +143,19 @@ Use the scoreboard function below to do the following:
 
  function scoreboard( func, func2, playInn ) {
   let newArr = [];
-  let score = { Home:0 , Away:0 };
+  let homeScore = 0;
+  let awayScore = 0;
   for( let i = 0; i < playInn; i++){
-    let inning = func(func2)
-    score = { Home: score.Home += inning.Home, Away: score.Away += inning.Away };
-    newArr.push( `Inning ${i + 1}: Away ${score.Away} - Home ${score.Home}` );
-    if( i + 1 === playInn ){
-      if(inning.Away === inning.Home) {
-        newArr.push(`This game will require extra innings: Away ${score.Away } - Home ${score.Away}`);
-      } else {
-        newArr.push(`Final Score: Away ${score.Away} - Home ${score.Home}`);
-      }
+
+    const inning = func(func2);
+    homeScore += inning.Home;
+    awayScore += inning.Away;
+    newArr.push( `Inning ${i + 1}: Away ${inning.Away} - Home ${inning.Home}` );
+
+    if(inning.Away === inning.Home) {
+      newArr.push(`This game will require extra innings: Away ${awayScore} - Home ${homeScore}`);
+    } else {
+      newArr.push(`Final Score: Away ${awayScore} - Home ${homeScore}`);
     }
   }
   return newArr
